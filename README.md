@@ -1,9 +1,4 @@
-Unga Hostel Management System project-ku yetha maari, neenga ippo GitHub-la push panna code-oda current features-ai base panni oru professional README.md file inge irukku.
 
-Ithil namba ippo add panna JWT, Log4j2, matrum Swagger details-um include aagi irukku.
-
-README.md
-Markdown
 # Hostel Management System (Full Stack)
 
 A comprehensive Hostel Management System built with Spring Boot (Backend) and React (Frontend), featuring secure payments and administrative controls.

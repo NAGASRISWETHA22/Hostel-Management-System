@@ -13,7 +13,7 @@ const Dashboard = () => {
     const fetchAvailableRooms = async () => {
         try {
             const response = await api.get('/rooms');
-            // 'occupied' illatha rooms-ah mattum filter pannuvom
+           
             const available = response.data.filter(room => !room.occupied);
             setRooms(available);
         } catch (err) {

@@ -5,7 +5,7 @@ import lombok.*;
 
 @Entity
 @Table(name = "users_table")
-@Data // Ithu thaan romba mukkiyam! Getter and Setter-ah ithu automatic-ah create pannum.
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
@@ -23,8 +23,7 @@ public class User {
     private String email;
 
     @Enumerated(EnumType.STRING)
-    private Role role; // Neenga Role Enum use pannurathala UserController-la .toString() podanum
-
+    private Role role; 
     private String phoneNumber;
 
     @ManyToOne

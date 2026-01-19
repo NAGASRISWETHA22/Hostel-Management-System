@@ -12,7 +12,6 @@ const AdminStudents = () => {
 
     const fetchStudents = async () => {
         try {
-            // Backend endpoint call
             const response = await axios.get('http://localhost:8080/api/users/students');
             setStudents(response.data);
             setLoading(false);

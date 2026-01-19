@@ -12,7 +12,7 @@ const AdminRooms = () => {
         rentAmount: 5000
     });
 
-    // Step 1: Backend-la irunthu existing rooms-ah fetch pannuvom
+   
     const fetchRooms = async () => {
         try {
             const response = await api.get('/rooms');
@@ -26,10 +26,10 @@ const AdminRooms = () => {
         fetchRooms();
     }, []);
 
-    // Step 2: Puthu room-ah Backend-ku anuppuvom
+   
     const handleAddRoom = async (e) => {
     e.preventDefault();
-    console.log("Sending Room Data:", newRoom); // Itha check panna
+    console.log("Sending Room Data:", newRoom); 
     try {
         const response = await api.post('/rooms', newRoom);
         console.log("Backend Response:", response.data);
@@ -37,7 +37,7 @@ const AdminRooms = () => {
         setNewRoom({ roomNumber: '', type: 'AC', capacity: 4, rentAmount: 5000 });
         fetchRooms(); 
     } catch (error) {
-        console.error("Full Error Object:", error); // Ithu thaan exact error-ah kaattum
+        console.error("Full Error Object:", error); 
         alert("Error adding room! Check console (F12) for details.");
     }
 };
@@ -46,7 +46,7 @@ const AdminRooms = () => {
         <div className="rooms-container">
             <h2>Room Management</h2>
             
-            {/* Form to add new room */}
+   
             <form className="add-room-form" onSubmit={handleAddRoom}>
                 <input 
                     placeholder="Room Number" 
@@ -67,7 +67,7 @@ const AdminRooms = () => {
                 <button type="submit">Add Room</button>
             </form>
 
-            {/* List of rooms from Database */}
+           
             <div className="rooms-list">
                 <h3>Available Rooms</h3>
                 <table>

@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/users") // Path prefix: /api/users
+@RequestMapping("/api/users") 
 @CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
 
@@ -21,12 +21,11 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-    // Student list-ah fetch panna
     @GetMapping("/students")
     public ResponseEntity<List<User>> getAllStudents() {
         try {
             List<User> allUsers = userRepository.findAll();
-            // Console-la check panna:
+            
             System.out.println("Total Users in DB: " + allUsers.size());
 
             List<User> students = allUsers.stream()
@@ -41,13 +40,10 @@ public class UserController {
         }
     }
 
-    // Puthu student register panna
     @PostMapping("/register")
     public ResponseEntity<User> register(@RequestBody User user) {
         return ResponseEntity.ok(userService.registerStudent(user));
     }
-
-    // Student-ah delete panna
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteStudent(@PathVariable Long id) {
         if (userRepository.existsById(id)) {

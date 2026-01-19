@@ -1,0 +1,65 @@
+.admin-students-container {
+    padding: 30px;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.student-count {
+    background: #007bff;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+.table-wrapper {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.modern-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.modern-table th {
+    background-color: #343a40;
+    color: white;
+    padding: 15px;
+    font-weight: 600;
+}
+
+.modern-table td {
+    padding: 15px;
+    border-bottom: 1px solid #dee2e6;
+    color: #495057;
+}
+
+.modern-table tr:hover {
+    background-color: #f1f3f5;
+}
+
+.status-badge {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.no-data {
+    text-align: center;
+    padding: 40px !important;
+    color: #868e96;
+}

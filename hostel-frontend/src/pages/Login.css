@@ -1,0 +1,44 @@
+.login-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.login-card {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  width: 350px;
+}
+
+h2 { text-align: center; color: #333; margin-bottom: 1.5rem; }
+
+.input-group { margin-bottom: 1.2rem; }
+
+.input-group label { display: block; margin-bottom: 5px; color: #666; }
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 12px;
+  background: #764ba2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.login-btn:hover { background: #5a358a; }

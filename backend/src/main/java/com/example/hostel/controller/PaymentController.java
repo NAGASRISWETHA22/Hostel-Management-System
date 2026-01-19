@@ -18,7 +18,7 @@ public class PaymentController {
     @Autowired
     private RoomService roomService;
 
-    private String stripeSecretKey = "sk_test_51SjiME3QtbZnJ1qvMb1oVXB2ifPnVriJi6lwzWMsg6w8RfdjJ4za9dJIIMrb0xI1vdnDtwKAwFmctA0KRbPmSrfp00qSD7pBO4";
+    private String stripeSecretKey = "";
 
     @PostMapping("/create-payment-intent")
     public Map<String, String> createPaymentIntent(@RequestBody Map<String, Object> data) {
@@ -30,8 +30,7 @@ public class PaymentController {
                     .setAmount(amount)
                     .setCurrency("inr")
                     .setAutomaticPaymentMethods(
-                        PaymentIntentCreateParams.AutomaticPaymentMethods.builder().setEnabled(true).build()
-                    )
+                            PaymentIntentCreateParams.AutomaticPaymentMethods.builder().setEnabled(true).build())
                     .build();
 
             PaymentIntent intent = PaymentIntent.create(params);

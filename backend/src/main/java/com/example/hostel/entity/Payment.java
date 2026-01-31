@@ -11,7 +11,7 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String transactionId; // Stripe PaymentIntent ID
+    private String transactionId; 
     private Double amount;
     
     private String status; // SUCCESS, FAILED, PENDING

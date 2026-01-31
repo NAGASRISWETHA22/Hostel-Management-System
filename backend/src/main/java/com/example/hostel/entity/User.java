@@ -7,6 +7,7 @@ import lombok.*;
 @Entity
 @Table(name = "users_table")
 @Data
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Schema(description = "User entity representing a student or admin in the hostel system")

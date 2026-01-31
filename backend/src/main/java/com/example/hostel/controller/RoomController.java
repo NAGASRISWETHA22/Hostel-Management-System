@@ -24,27 +24,7 @@ public class RoomController {
     @Autowired
     private RoomService roomService;
 
-    @Operation(
-            summary = "Add New Room",
-            description = "Create a new room in the hostel. Requires authentication."
-    )
-    @ApiResponses(value = {
-            @ApiResponse(
-                    responseCode = "200",
-                    description = "Room added successfully",
-                    content = @Content(schema = @Schema(implementation = Room.class))
-            ),
-            @ApiResponse(
-                    responseCode = "500",
-                    description = "Error adding room",
-                    content = @Content
-            ),
-            @ApiResponse(
-                    responseCode = "401",
-                    description = "Unauthorized - Authentication required",
-                    content = @Content
-            )
-    })
+    // Room add cheyyaan (405 error fix cheyyaan)
     @PostMapping
     public ResponseEntity<?> addRoom(@RequestBody Room room) {
         try {
@@ -54,27 +34,7 @@ public class RoomController {
         }
     }
 
-    @Operation(
-            summary = "Update Room Status",
-            description = "Update the status of a room by ID. Status can be 'Available', 'Occupied', or 'Maintenance'. Requires authentication."
-    )
-    @ApiResponses(value = {
-            @ApiResponse(
-                    responseCode = "200",
-                    description = "Room status updated successfully",
-                    content = @Content(schema = @Schema(implementation = Map.class))
-            ),
-            @ApiResponse(
-                    responseCode = "500",
-                    description = "Error updating room status",
-                    content = @Content
-            ),
-            @ApiResponse(
-                    responseCode = "401",
-                    description = "Unauthorized - Authentication required",
-                    content = @Content
-            )
-    })
+    // Payment-inu shesham status update cheyyaan (404 error fix cheyyaan)
     @PutMapping("/{id}/status")
     public ResponseEntity<?> updateStatus(@PathVariable Long id, @RequestParam String status) {
         try {

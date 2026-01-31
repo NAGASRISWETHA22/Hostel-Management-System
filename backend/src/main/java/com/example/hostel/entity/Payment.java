@@ -13,6 +13,7 @@ public class Payment {
 
     private String transactionId; // Stripe PaymentIntent ID
     private Double amount;
+    
     private String status; // SUCCESS, FAILED, PENDING
     private LocalDateTime paymentDate;
 

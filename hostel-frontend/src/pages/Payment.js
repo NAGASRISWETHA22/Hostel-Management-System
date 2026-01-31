@@ -5,7 +5,6 @@ import { Elements, CardElement, useStripe, useElements } from '@stripe/react-str
 import api from '../services/api';
 import './Payment.css';
 
-// Stripe Publishable Key
 const stripePromise = loadStripe("pk_test_51SjiME3QtbZnJ1qvUmBJNtSEMAbcLiefYNh83dTsISXXRSpyomF49Ic8ZCrHYO2WbrsTAkD8bmeGXSkUWQLSaEH800I6WU7Eix");
 
 const CheckoutForm = ({ room }) => {
@@ -23,7 +22,7 @@ const CheckoutForm = ({ room }) => {
         setMessage("");
 
         try {
-            // 1. Get Client Secret from Backend
+           
             const amountToPay = room.rentAmount || room.rent || 5000;
             const { data } = await api.post('/payment/create-payment-intent', { 
                 amount: amountToPay 
@@ -35,7 +34,7 @@ const CheckoutForm = ({ room }) => {
                 return;
             }
 
-            // 2. Confirm Payment with Stripe
+           
             const result = await stripe.confirmCardPayment(data.clientSecret, {
                 payment_method: {
                     card: elements.getElement(CardElement),
@@ -46,11 +45,11 @@ const CheckoutForm = ({ room }) => {
                 setMessage(result.error.message);
             } else if (result.paymentIntent.status === 'succeeded') {
                 
-                // 3. Update Room Status to OCCUPIED in Database
+              
                 try {
                     await api.put(`/rooms/${room.id}/status?status=OCCUPIED`);
                     alert(`Payment Successful! Room No: ${room.roomNumber || room.roomNo} has been booked.`);
-                    navigate('/student/dashboard');
+                    navigate('/user/dashboard');
                 } catch (dbError) {
                     console.error("DB Update Error:", dbError);
                     setMessage("Payment successful, but database update failed. Please contact admin.");
@@ -109,7 +108,7 @@ const Payment = () => {
                 ) : (
                     <div className="no-data">
                         <p>No room selected. Please go back.</p>
-                        <button onClick={() => navigate('/student/dashboard')} className="back-btn">
+                        <button onClick={() => navigate('/user/dashboard')} className="back-btn">
                             Go to Dashboard
                         </button>
                     </div>

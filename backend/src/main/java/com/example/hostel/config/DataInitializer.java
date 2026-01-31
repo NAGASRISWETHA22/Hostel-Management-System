@@ -23,7 +23,7 @@ public class DataInitializer implements CommandLineRunner {
         if (userRepository.findByUsername("admin").isEmpty()) {
             User admin = new User();
             admin.setUsername("admin");
-            admin.setPassword(passwordEncoder.encode("admin123")); 
+            admin.setPassword(passwordEncoder.encode("admin123"));
             admin.setEmail("admin@hostel.com");
             admin.setRole(Role.ROLE_ADMIN);
             userRepository.save(admin);
@@ -33,11 +33,11 @@ public class DataInitializer implements CommandLineRunner {
         if (userRepository.findByUsername("student1").isEmpty()) {
             User student = new User();
             student.setUsername("student1");
-            student.setPassword(passwordEncoder.encode("admin123")); 
+            student.setPassword(passwordEncoder.encode("admin123"));
             student.setEmail("student@hostel.com");
             student.setRole(Role.ROLE_STUDENT);
             userRepository.save(student);
         }
-        System.out.println(">>> Auth Setup Complete: admin/admin123 and student1/admin123 are ready!");
+        System.out.println(">>> Auth Setup Complete!");
     }
 }

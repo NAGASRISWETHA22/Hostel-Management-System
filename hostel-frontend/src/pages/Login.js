@@ -1,90 +1,102 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { setCredentials } from '../features/authSlice';
 import api from '../services/api';
+import { useNavigate } from 'react-router-dom';
 import './Login.css';
 
 const Login = () => {
-  const [credentials, setCredentialsState] = useState({ username: '', password: '' });
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+    const [roleChoice, setRoleChoice] = useState(null); 
+    const [isSignup, setIsSignup] = useState(false);
+    const [formData, setFormData] = useState({ username: '', password: '', email: '' });
+    const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    setCredentialsState({ ...credentials, [e.target.name]: e.target.value });
-  };
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            if (isSignup) {
+                // User Signup logic
+                await api.post('/auth/signup', formData);
+                alert("Signup Success! Please Login.");
+                setIsSignup(false);
+            } else {
+                // Clear old data before fresh login
+                localStorage.clear(); 
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log("!!! Login Button Clicked !!! Data:", credentials);
+                const res = await api.post('/auth/login', formData);
 
-    try {
-      // Step 1: Call Backend
-      const response = await api.post('/auth/login', credentials);
-      console.log("Backend Response:", response.data);
+                console.log("Login Response Data:", res.data);
+                const token = res.data.token || res.data.accessToken;
+                const userRole = res.data.role;
 
-      const { token, user } = response.data;
+                if (token) {
+                  
+                    localStorage.setItem('token', token);
+                    localStorage.setItem('role', userRole);
 
-      // Step 2: Save Data
-      localStorage.setItem('token', token);
-      const userRole = user.role?.name || user.role || "ROLE_STUDENT";
-      localStorage.setItem('role', userRole);
+                    console.log("Storage Success: Token & Role Saved.");
 
-      // Step 3: Update Redux
-      dispatch(setCredentials({ user, token }));
+                   
+                    if (userRole && userRole.includes('ADMIN')) {
+                        navigate('/admin/dashboard');
+                    } else if (userRole && userRole.includes('STUDENT')) {
+                        navigate('/user/dashboard');
+                    } else {
+                        alert("Role check failed: " + userRole);
+                    }
+                } else {
+                    alert("Login failed: Token not received from server.");
+                }
+            }
+        } catch (err) {
+            console.error("Auth Error:", err);
+            alert("Error: " + (err.response?.data?.message || "Action Failed"));
+        }
+    };
 
-      // Step 4: Navigate
-      alert("Success! Welcome " + user.username);
-      
-      if (userRole === 'ROLE_ADMIN') {
-        navigate('/admin/dashboard');
-      } else {
-        navigate('/student/dashboard');
-      }
+    return (
+        <div className="auth-wrapper">
+            <h1 className="main-header">Hostel Management System</h1>
 
-    } catch (error) {
-      console.error("Login Error Details:", error);
-      if (!error.response) {
-        alert("Server Down! Check if your Spring Boot is running on port 8080.");
-      } else {
-        alert("Login Failed: " + (error.response.data?.message || "Invalid Credentials"));
-      }
-    }
-  };
-
-  return (
-    <div className="login-container">
-      <div className="login-card">
-        <h2>Hostel Login</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="input-group">
-            <label>Username</label>
-            <input 
-              type="text" 
-              name="username" 
-              value={credentials.username}
-              onChange={handleChange} 
-              required 
-            />
-          </div>
-          <div className="input-group">
-            <label>Password</label>
-            <input 
-              type="password" 
-              name="password" 
-              value={credentials.password}
-              onChange={handleChange} 
-              required 
-            />
-          </div>
-          {/* If this button still 'does nothing', check your Login.css for pointer-events: none */}
-          <button type="submit" className="login-btn" style={{ cursor: 'pointer', opacity: 1 }}>
-            Login Now
-          </button>
-        </form>
-      </div>
-    </div>
-  );
+            <div className="login-container">
+                <div className="login-card">
+                    {roleChoice === null ? (
+                        <div className="portal-selection">
+                            <h2>Select Your Portal</h2>
+                            <button className="login-btn portal-btn" onClick={() => setRoleChoice('admin')}>Admin Portal</button>
+                            <button className="login-btn portal-btn user-portal" onClick={() => setRoleChoice('user')}>User Portal</button>
+                        </div>
+                    ) : (
+                        <div>
+                            <h2>{roleChoice === 'admin' ? 'Admin Login' : (isSignup ? 'User Signup' : 'User Login')}</h2>
+                            <form onSubmit={handleSubmit}>
+                                <div className="input-group">
+                                    <label>Username</label>
+                                    <input type="text" placeholder="Enter Username" onChange={(e) => setFormData({...formData, username: e.target.value})} required />
+                                </div>
+                                {isSignup && (
+                                    <div className="input-group">
+                                        <label>Email</label>
+                                        <input type="email" placeholder="Enter Email" onChange={(e) => setFormData({...formData, email: e.target.value})} required />
+                                    </div>
+                                )}
+                                <div className="input-group">
+                                    <label>Password</label>
+                                    <input type="password" placeholder="Enter Password" onChange={(e) => setFormData({...formData, password: e.target.value})} required />
+                                </div>
+                                <button className="login-btn submit-btn" type="submit">{isSignup ? 'Register' : 'Login'}</button>
+                            </form>
+                            
+                            {roleChoice === 'user' && (
+                                <p onClick={() => setIsSignup(!isSignup)} className="signup-text">
+                                    <span>{isSignup ? "Already have an account? Login" : "New User? Signup Here"}</span>
+                                </p>
+                            )}
+                            <button onClick={() => {setRoleChoice(null); setIsSignup(false);}} className="back-link">← Back to Selection</button>
+                        </div>
+                    )}
+                </div>
+            </div>
+        </div>
+    );
 };
 
 export default Login;

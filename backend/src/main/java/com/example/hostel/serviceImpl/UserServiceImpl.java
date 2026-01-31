@@ -20,10 +20,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User registerStudent(User user) {
-        // Password-ai encrypt pannugirom
+        // Password-ai encrypt pandrom
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-        // Default role STUDENT-aa set pannugirom
+        // Default role STUDENT-aa set pannurom
         if (user.getRole() == null) {
             user.setRole(Role.ROLE_STUDENT);
         }

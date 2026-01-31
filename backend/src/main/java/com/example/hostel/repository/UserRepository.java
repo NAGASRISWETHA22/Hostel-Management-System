@@ -10,8 +10,9 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByUsername(String username);
-
-    // Student role ulla users-ai mattum edukka
+    boolean existsByUsername(String username);
+   
     @Query("SELECT u FROM User u WHERE u.role = 'ROLE_USER'")
     List<User> findAllStudents();
+
 }

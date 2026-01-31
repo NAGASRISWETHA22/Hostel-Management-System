@@ -19,7 +19,6 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/users") 
-@RequestMapping("/api/users") 
 @CrossOrigin(origins = "http://localhost:3000")
 @Tag(name = "User Management", description = "Endpoints for managing users and students")
 @SecurityRequirement(name = "bearerAuth")

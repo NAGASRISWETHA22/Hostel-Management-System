@@ -78,6 +78,8 @@ public class AuthController {
 
             return ResponseEntity.ok(response);
         } catch (Exception e) {
+            System.err.println("Login Error: " + e.getMessage());
+            e.printStackTrace();
             return ResponseEntity.status(401).body(Map.of("message", "Invalid Username or Password!"));
         }
     }

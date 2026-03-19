@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import api from '../services/api';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
+import FloatingShapes from '../components/FloatingShapes';
 
 const Login = () => {
     const [roleChoice, setRoleChoice] = useState(null); 
@@ -48,12 +49,15 @@ const Login = () => {
             }
         } catch (err) {
             console.error("Auth Error:", err);
-            alert("Error: " + (err.response?.data?.message || "Action Failed"));
+            // Enhanced error message display
+            const errorMessage = err.response?.data?.message || "Invalid Username or Password!";
+            alert("Error: " + errorMessage);
         }
     };
 
     return (
-        <div className="auth-wrapper">
+        <div className="auth-wrapper animated-bg">
+            <FloatingShapes />
             <h1 className="main-header">Hostel Management System</h1>
 
             <div className="login-container">

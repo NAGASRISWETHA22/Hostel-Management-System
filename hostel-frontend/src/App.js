@@ -10,6 +10,7 @@ const Login = lazy(() => import('./pages/Login'));
 const Dashboard = lazy(() => import('./pages/Dashboard'));
 const Payment = lazy(() => import('./pages/Payment'));
 const AdminRooms = lazy(() => import('./pages/AdminRooms'));
+const Home = lazy(() => import('./pages/Home'));
 
 function App() {
   return (
@@ -17,8 +18,8 @@ function App() {
       <Router>
         <Suspense fallback={<div className="loading">Loading...</div>}>
           <Routes>
-            {/* Default Route */}
-            <Route path="/" element={<Navigate to="/login" />} />
+            {/* Landing Page */}
+            <Route path="/" element={<Home />} />
             
             {/* Auth Routes */}
             <Route path="/login" element={<Login />} />
@@ -36,7 +37,7 @@ function App() {
             <Route path="/admin/rooms" element={<AdminRooms />} />
 
             {/* Catch-all route to prevent blank screen */}
-            <Route path="*" element={<Navigate to="/login" />} />
+            <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </Suspense>
       </Router>

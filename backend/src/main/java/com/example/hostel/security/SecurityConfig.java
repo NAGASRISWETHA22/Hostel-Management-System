@@ -24,19 +24,19 @@ public class SecurityConfig {
     @Autowired
     private JwtAuthenticationFilter jwtAuthenticationFilter;
 
-    // ✅ Authentication Manager
+    //  Authentication Manager
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
 
-    // ✅ Password Encoder
+    //  Password Encoder
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    // ✅ CORS Configuration (Swagger + React safe)
+    //  CORS Configuration (Swagger + React safe)
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
@@ -53,7 +53,7 @@ public class SecurityConfig {
         return source;
     }
 
-    // ✅ Security Filter Chain
+    //  Security Filter Chain
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
@@ -72,10 +72,10 @@ public class SecurityConfig {
             // Authorization rules
             .authorizeHttpRequests(auth -> auth
 
-                // 🔓 Auth APIs
+                //  Auth APIs
                 .requestMatchers("/api/auth/**").permitAll()
 
-                // 🔓 Swagger URLs (🔥 VERY IMPORTANT)
+                // Swagger URLs ( VERY IMPORTANT)
                 .requestMatchers(
                         "/v3/api-docs/**",
                         "/swagger-ui/**",
@@ -83,10 +83,10 @@ public class SecurityConfig {
                         "/webjars/**"
                 ).permitAll()
 
-                // 🔓 OPTIONS (CORS + Swagger)
+                //  OPTIONS (CORS + Swagger)
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 
-                // 🔐 All others secured
+                // All others secured
                 .anyRequest().authenticated()
             );
 

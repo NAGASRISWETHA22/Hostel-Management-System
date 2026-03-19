@@ -1,32 +1,41 @@
 /* Login.css */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap');
 
-/* Dashboard-ai affect pannama login background-ai mattum fix panna */
 .auth-wrapper {
     margin: 0;
     padding: 0;
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    font-family: 'Outfit', sans-serif;
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
     min-height: 100vh;
     width: 100vw;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Vertical-aa center panna */
-    align-items: center;     /* Horizontal-aa center panna */
+    justify-content: center;
+    align-items: center;
     overflow: hidden;
     position: relative;
 }
 
-/* Title perfect-aa center-la irukka */
+/* Add a deep ambient overlay */
+.auth-wrapper::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.3) 100%);
+    z-index: 2;
+}
+
 .main-header {
     width: 100%;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
     color: white;
-    font-size: 2.8rem;
-    font-weight: 700;
-    text-shadow: 2px 4px 10px rgba(0,0,0,0.3);
+    font-size: 4rem;
+    font-weight: 800;
+    text-shadow: 0 20px 40px rgba(0,0,0,0.4);
     text-align: center;
-    letter-spacing: 1px;
+    letter-spacing: -1px;
+    z-index: 10;
+    animation: fadeInDown 1s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .login-container {
@@ -34,121 +43,160 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 10;
 }
 
-/* Glassmorphism look login card */
+/* Ultra-Glassmorphism Login Card */
 .login-card {
-    background: rgba(255, 255, 255, 0.95);
-    padding: 2.5rem;
-    border-radius: 24px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
-    width: 400px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 4rem;
+    border-radius: 40px;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.4);
+    width: 480px;
     max-width: 90%;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    backdrop-filter: blur(25px);
     text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: scaleIn 0.8s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .login-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+    transform: translateY(-15px);
+    box-shadow: 0 50px 100px rgba(0,0,0,0.5);
+    border-color: rgba(255, 255, 255, 0.4);
 }
 
 .login-card h2 {
-    color: #333;
-    margin-bottom: 1.5rem;
-    font-size: 1.8rem;
-    font-weight: 600;
+    color: white;
+    margin-bottom: 2.5rem;
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
 }
 
 .input-group {
-    margin-bottom: 1.2rem;
-    text-align: left; /* Input labels mattum left-la irukka */
+    margin-bottom: 2rem;
+    text-align: left;
 }
 
 .input-group label {
     display: block;
-    margin-bottom: 0.5rem;
-    color: #555;
+    margin-bottom: 0.8rem;
+    color: rgba(255, 255, 255, 0.9);
     font-weight: 500;
+    font-size: 1rem;
+    padding-left: 5px;
 }
 
 .input-group input {
     width: 100%;
-    padding: 14px;
-    border: 2px solid #eee;
-    border-radius: 12px;
+    padding: 18px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
     outline: none;
-    transition: 0.3s;
+    transition: all 0.3s ease;
     box-sizing: border-box;
-    font-size: 1rem;
+    font-size: 1.1rem;
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+    font-family: inherit;
+}
+
+.input-group input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
 }
 
 .input-group input:focus {
-    border-color: #667eea;
-    box-shadow: 0 0 8px rgba(102, 126, 234, 0.2);
+    border-color: #f093fb;
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 20px rgba(240, 147, 251, 0.3);
+    transform: scale(1.02);
 }
 
 .login-btn {
     width: 100%;
-    padding: 14px;
-    background: linear-gradient(to right, #667eea, #764ba2);
+    padding: 18px;
+    background: linear-gradient(45deg, #ec4899, #8b5cf6);
     border: none;
-    border-radius: 12px;
+    border-radius: 20px;
     color: white;
-    font-size: 1.1rem;
-    font-weight: 600;
+    font-size: 1.3rem;
+    font-weight: 700;
     cursor: pointer;
-    transition: 0.4s;
-    margin-top: 10px;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    margin-top: 20px;
+    box-shadow: 0 15px 30px rgba(236, 72, 153, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .login-btn:hover {
     filter: brightness(1.1);
-    box-shadow: 0 8px 20px rgba(118, 75, 162, 0.4);
+    box-shadow: 0 20px 40px rgba(236, 72, 153, 0.5);
+    transform: translateY(-5px);
 }
 
 .signup-text {
-    margin-top: 20px;
-    font-size: 0.95rem;
-    color: #666;
+    margin-top: 30px;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 400;
 }
 
 .signup-text span {
-    color: #764ba2;
-    font-weight: 600;
+    color: #f093fb;
+    font-weight: 700;
     cursor: pointer;
-    text-decoration: underline;
-}
-
-.back-link {
-    display: block;
-    margin-top: 20px;
-    color: #888;
-    font-size: 0.9rem;
-    cursor: pointer;
+    text-decoration: none;
     transition: 0.3s;
 }
 
+.signup-text span:hover {
+    text-decoration: underline;
+    filter: brightness(1.2);
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 30px;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+    background: none;
+    border: none;
+    font-weight: 500;
+    font-family: inherit;
+}
+
 .back-link:hover {
-    color: #333;
+    color: white;
+    transform: translateX(-8px);
 }
 
 .portal-selection {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-}
-
-.portal-btn {
-    margin-bottom: 0;
+    gap: 2rem;
 }
 
 .user-portal {
-    background: linear-gradient(to right, #f093fb 0%, #f5576c 100%);
+    background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
+    box-shadow: 0 15px 30px rgba(245, 87, 108, 0.3);
 }
 
 .user-portal:hover {
-    filter: brightness(1.1);
-    box-shadow: 0 8px 20px rgba(245, 87, 108, 0.4);
+    box-shadow: 0 20px 40px rgba(245, 87, 108, 0.5);
 }
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+

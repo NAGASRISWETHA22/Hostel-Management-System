@@ -1,0 +1,22 @@
+# Root Gitignore for Hostel Management System
+
+# System Files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Backend Build & Secrets
+backend/target/
+backend/secrets.properties
+backend/.env
+backend/*.iml
+
+# Frontend Build & Secrets
+hostel-frontend/node_modules/
+hostel-frontend/build/
+hostel-frontend/.env*
+hostel-frontend/npm-debug.log*
+
+# General Logs
+*.log

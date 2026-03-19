@@ -36,8 +36,6 @@ public class User {
     @Schema(description = "User phone number", example = "+1234567890")
     private String phoneNumber;
 
-    // Initially signup pannum pothu room assign aagathu,
-    // so idhai optional-aa vechikalaam
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "room_id", nullable = true)
     @Schema(description = "Assigned room (optional, can be null initially)")

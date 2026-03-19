@@ -24,7 +24,7 @@ public class RoomController {
     @Autowired
     private RoomService roomService;
 
-    // Room add cheyyaan (405 error fix cheyyaan)
+    // Room add pandrathuku
     @PostMapping
     public ResponseEntity<?> addRoom(@RequestBody Room room) {
         try {
@@ -34,7 +34,7 @@ public class RoomController {
         }
     }
 
-    // Payment-inu shesham status update cheyyaan (404 error fix cheyyaan)
+    // Payment status update panna (404 error fix pandrathuku)
     @PutMapping("/{id}/status")
     public ResponseEntity<?> updateStatus(@PathVariable Long id, @RequestParam String status) {
         try {
